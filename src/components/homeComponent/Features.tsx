@@ -1,7 +1,6 @@
 import TypingText from '../text/TypingText'
 import Coin from '../canvas/Coin'
-
-
+import robot from '../../assets/images/r-l-1-happy.png'
 import light from '../../assets/images/light-bulb.png'
 export default function Features() {
   return (
@@ -28,7 +27,7 @@ export default function Features() {
           </div>
           <div className="flex flex-col items-center justify-center  gap-5 h-[300px] relative bg-white rounded-3xl  max-xl:h-[400px] max-xl:w-[100%]">
             <h2>Riattiviamo</h2>
-            <img src={light} width={150} alt="" />
+            <img src={robot} width={300} alt="" />
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ import { About } from '../components/homeComponent/About'
 import { animate } from '../functions'
 import AuthContext from '../components/auth/AuthContext'
 import GuestLayout from '../layouts/GuestLayout'
+import Ai from "../components/homeComponent/Ai";
 
 gsap.registerPlugin(ScrollTrigger)
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <TimeLine experiences={steps} title={"come si usa l'applicazione?"}></TimeLine>
       <Features></Features>
       <TimeLine experiences={motivations} title="perché scegliere questa app?" idTl={'j-3'}></TimeLine>
+      <Ai></Ai>
     </GuestLayout>
   )
 }
