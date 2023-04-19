@@ -58,12 +58,14 @@ export default function MessagesContainer() {
             id="get_message"
             className=" rounded-full pt-2 w-full ml-2 resize-none outline-none h-full  bg-white text-black pl-4 "
             onKeyDown={(e) => {
+
               if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault()
                 // @ts-ignore
                 if (input.value.length === 0) return
                 chat()
               } else if (e.key === ' ') {
+                e.preventDefault()
                 // @ts-ignore
                 input.value += ' '
               }
