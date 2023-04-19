@@ -26,7 +26,7 @@ export default function Features() {
             <img src={light} width={150} alt="" />
           </div>
           <div className="flex flex-col items-center justify-center  gap-5 h-[300px] relative bg-white rounded-3xl  max-xl:h-[400px] max-xl:w-[100%]">
-            <h2>Riattiviamo</h2>
+            {/*<h2>Riattiviamo</h2>*/}
             <img src={robot} width={300} alt="" />
           </div>
         </div>

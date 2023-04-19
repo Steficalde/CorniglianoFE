@@ -18,7 +18,7 @@ export default function Menu() {
   // @ts-ignore
   return (
     <nav>
-      <div className='w-full h-[80px] z-50 absolute max-sm:hidden'>
+      <div className='w-full h-[80px] z-50 absolute max-sm:hidden inset-0'>
         <div className="flex justify-between items-center container-xl h-full">
           <div className="flex items-center gap-12 ">
             <Link to={'/'} className="text-bold text-[28px] font-bold ">
