@@ -70,10 +70,10 @@ html {
   width: 10px;
 }
 #container-messages::-webkit-scrollbar-track {
-  background: var(--my-green);
+  background: #b9dcac;
 }
 #container-messages::-webkit-scrollbar-thumb {
-  background-color: #b9dcac;
+  background-color: var(--my-green);
   border-radius: 5px;
 }
 

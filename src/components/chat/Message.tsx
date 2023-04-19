@@ -1,5 +1,5 @@
 
-export default function Message({ message = "", issuer = true }) {
+export default function Message({children, issuer = true }) {
   const messageStyler = issuer
     ? {
         background: '#b3e899',
@@ -22,14 +22,14 @@ export default function Message({ message = "", issuer = true }) {
       }
   const direction = issuer ? 'flex-row-reverse' : null
   const float = issuer ? ' justify-end ' : ' justify-start '
-  return (
+    return (
     <div className={'  w-full flex' + float}>
       <div
         className={'flex w-fit max-w-[80%] gap-2  items-center m-2 px-4 py-2 ' + direction}
         style={{ ...messageStyler, position: 'relative' }}
       >
         <div className="absolute top-0 " style={{ borderBottom: '10px solid transparent', ...triangleStyle }} />
-        <p className="text-[16px]">{message}</p>
+          {children}
       </div>
     </div>
   )
