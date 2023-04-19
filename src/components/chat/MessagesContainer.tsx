@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import send from '../../assets/images/send.png'
 import Message from './Message'
 import {SERVER_URL} from "../../costants";
-import axios from "axios";
 
 export default function MessagesContainer() {
   const input = window.document.querySelector('#get_message')

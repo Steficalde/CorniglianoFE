@@ -70,7 +70,7 @@ html {
   width: 10px;
 }
 #container-messages::-webkit-scrollbar-track {
-  background: theme('colors.green.100');
+  background: var(--my-green);
 }
 #container-messages::-webkit-scrollbar-thumb {
   background-color: #b9dcac;
@@ -82,11 +82,11 @@ html {
 }
 
 .vertical-timeline::before{
-  background-color: theme('colors.my-blue');
+  background-color: var(--my-blue) !important;
 }
 .vertical-timeline-element-icon{
-  box-shadow: 0 0 0 4px theme('colors.my-blue'), inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05);
-  webkit-box-shadow: 0 0 0 4px theme('colors.my-blue'), inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05);
+  box-shadow: 0 0 0 4px var(--my-blue), inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05) !important;
+  webkit-box-shadow: 0 0 0 4px var(--my-blue), inset 0 2px 0 rgba(0,0,0,.08), 0 3px 0 4px rgba(0,0,0,.05) !important;
 }
 
 

@@ -5,7 +5,7 @@ import Coin from '../canvas/Coin'
 import light from '../../assets/images/light-bulb.png'
 export default function Features() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center px-3">
       <div className="w-full flex justify-center" id="j-2">
         <TypingText text={['rafforzare', 'riuniamo', 'riattiviamo']}></TypingText>
       </div>
