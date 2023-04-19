@@ -20,7 +20,7 @@ export default function MessagesContainer() {
     try {
       let form = new FormData()
       form.append('message', message)
-      const res = await fetch(`${SERVER_URL}/chat`, {method: 'POST', body: form, cache: 'no-store'})
+      const res = await fetch(`https://hugstore.it/chat`, {method: 'POST', body: form, cache: 'no-store'})
       data = await res.text()
 
     }catch(e){
