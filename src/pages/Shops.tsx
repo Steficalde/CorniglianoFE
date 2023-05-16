@@ -1,9 +1,9 @@
-import ShopCard from '../components/shop/ShopCard'
-import React, { useEffect, useRef, useState } from 'react'
-import InfiniteScroll from 'react-infinite-scroll-component'
-import { Shop } from '../types/Shop'
-import { SERVER_URL } from '../costants'
-import GuestLayout from '../layouts/GuestLayout'
+import ShopCard from "../components/shop/ShopCard";
+import React, { useEffect, useRef, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { Shop } from "../types/Shop";
+import { SERVER_URL } from "../costants";
+import GuestLayout from "../layouts/GuestLayout";
 
 export default function Shops() {
   const [shops, setShops] = useState<Shop[] | undefined[]>([])
@@ -17,7 +17,6 @@ export default function Shops() {
         let param = cursor == null ? '' : '?cursor=' + cursor
         const data: any = await fetch(`${SERVER_URL}/shops${param}`, { cache: 'no-store' })
         const res = await data.json()
-        console.log(res.data)
         if (res.data.length == 0) {
           setEnded(true)
           setHasMore(false)

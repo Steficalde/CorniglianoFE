@@ -1,11 +1,10 @@
-
 import AdminLayout from "../../layouts/AdminLayout";
 
-export default function AdminShops() {
+export default function AdminShops(): JSX.Element {
 
   return (
     <AdminLayout>
-      ADMIN SJs
+      <h1>Negozi</h1>
     </AdminLayout>
 
   )

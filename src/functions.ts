@@ -1,5 +1,5 @@
-import {gsap, Power3} from "gsap";
-import {MIN_WIDTHS} from "./costants";
+import { gsap, Power3 } from "gsap";
+import { MIN_WIDTHS } from "./costants";
 
 export function animate(){
     let mm = gsap.matchMedia()

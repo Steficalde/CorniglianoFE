@@ -1,6 +1,4 @@
-import React from 'react'
-
-import {object} from "prop-types";
+import React from "react";
 // @ts-ignore
 export default function Section({ article, reverse = false }) {
   const reversed = reverse ? 'flex-row-reverse' : null

@@ -1,9 +1,9 @@
 import AdminLayout from '../../layouts/AdminLayout'
 
-export default function AdminAwards(): JSX.Element {
+export default function AdminSettings(): JSX.Element {
   return (
     <AdminLayout>
-      <h1>Premi</h1>
+      <h1>Impostazioni</h1>
     </AdminLayout>
   )
 }

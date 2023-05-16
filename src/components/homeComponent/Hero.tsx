@@ -1,6 +1,6 @@
-import EarthCanvas from '../canvas/Earth'
-import ArrowLink from '../button/ArrowLink'
-import { handleScrollClick } from '../../costants'
+import EarthCanvas from "../canvas/Earth";
+import ArrowLink from "../button/ArrowLink";
+import { handleScrollClick } from "../../costants";
 
 export default function Hero() {
   return (

@@ -1,15 +1,13 @@
-
-import { useContext, useEffect } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { TimeLine } from '../components/TimeLine'
-import { motivations, steps } from '../costants'
-import Hero from '../components/homeComponent/Hero'
-import Features from '../components/homeComponent/Features'
-import { About } from '../components/homeComponent/About'
-import { animate } from '../functions'
-import AuthContext from '../components/auth/AuthContext'
-import GuestLayout from '../layouts/GuestLayout'
+import { useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { TimeLine } from "../components/TimeLine";
+import { motivations, steps } from "../costants";
+import Hero from "../components/homeComponent/Hero";
+import Features from "../components/homeComponent/Features";
+import { About } from "../components/homeComponent/About";
+import { animate } from "../functions";
+import GuestLayout from "../layouts/GuestLayout";
 import Ai from "../components/homeComponent/Ai";
 
 gsap.registerPlugin(ScrollTrigger)

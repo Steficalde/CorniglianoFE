@@ -1,7 +1,8 @@
-import TypingText from '../text/TypingText'
-import Coin from '../canvas/Coin'
-import robot from '../../assets/images/r-l-1-happy.png'
-import light from '../../assets/images/light-bulb.png'
+import TypingText from "../text/TypingText";
+import Coin from "../canvas/Coin";
+import robot from "../../assets/images/r-l-1-happy.png";
+import light from "../../assets/images/light-bulb.png";
+
 export default function Features() {
   return (
     <div className="flex flex-col justify-center items-center px-3">

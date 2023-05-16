@@ -1,11 +1,11 @@
 //same as tailwind breakpoint
-import award from './assets/images/trophy.png'
-import hug from './assets/images/hugstore-logo.png'
-import download from './assets/images/download.png'
-import store from './assets/images/store.png'
-import app from './assets/images/app.png'
-import qr from './assets/images/qr.png'
-import completed from './assets/images/complete.png'
+import award from "./assets/images/trophy.png";
+import hug from "./assets/images/hugstore-logo.png";
+import download from "./assets/images/download.png";
+import store from "./assets/images/store.png";
+import app from "./assets/images/app.png";
+import qr from "./assets/images/qr.png";
+import completed from "./assets/images/complete.png";
 
 export enum MIN_WIDTHS {
   SM = 640,
@@ -135,6 +135,7 @@ export enum MENU {
 
 }
 export enum ADMIN_MENU {
+  Dashboard = '/admin',
   Negozi = '/admin/shops',
   Premi = '/admin/awards',
   Impostazioni = '/admin/settings',
