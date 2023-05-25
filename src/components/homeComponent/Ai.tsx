@@ -1,5 +1,6 @@
-import botHappy from "../../assets/images/r-l-1-happy.png"
-import bot from "../../assets/images/r-l-1.png"
+import botHappy from "../../assets/images/r-l-1-happy.png";
+import bot from "../../assets/images/r-l-1.png";
+
 export default function Ai(){
     return(
         <div className="container-xl flex flex-col justify-center items-center" id="AI">

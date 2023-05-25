@@ -1,8 +1,7 @@
-
-import { Fragment, useEffect, useState } from 'react'
-import { Menu } from '@headlessui/react'
-import bot from '../../assets/images/chatbot.png'
-import MessagesContainer from './MessagesContainer'
+import { Fragment, useState } from "react";
+import { Menu } from "@headlessui/react";
+import bot from "../../assets/images/chatbot.png";
+import MessagesContainer from "./MessagesContainer";
 
 
 export default function ChatPopup() {

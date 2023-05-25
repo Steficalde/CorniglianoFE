@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import send from '../../assets/images/send.png'
-import Message from './Message'
-import {SERVER_URL} from "../../costants";
-import {ThreeDots} from "react-loader-spinner"
+import React, { useEffect, useState } from "react";
+import send from "../../assets/images/send.png";
+import Message from "./Message";
+import { ThreeDots } from "react-loader-spinner";
+
 export default function MessagesContainer() {
   const input = window.document.querySelector('#get_message')
   let issuer = true

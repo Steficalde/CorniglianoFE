@@ -1,66 +1,62 @@
-
-import { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { SERVER_URL } from '../../costants'
-import { Tokens, Auth, JwtPayload, User } from '../../types/auth'
+import { Auth, JwtPayload, Tokens, User } from '../../types/auth'
 
-// @ts-ignore
-const AuthContext = createContext<Auth>()
+type UserInfo = Pick<User, 'name' | 'email' | 'avatar'>
 
-export const AuthContextProvider = ({ children }: { children: React.ReactNode }) => {
+const AuthContext: React.Context<Auth | null> = createContext<Auth | null>(null)
+
+export const AuthContextProvider = ({
+  children,
+}: {
+  children: React.ReactNode
+}) => {
+  // state to store the user data
+  const [user, setUser] = useState<User | null>(null)
+
   // utility functions
   // if there is a token in local storage, return it otherwise return null
   const getAccessToken = (): string | null => {
-    if (localStorage.getItem('accessToken')) {
-      try {
-        // @ts-ignore
-        return JSON.parse(localStorage.getItem('accessToken'))
-      } catch (e) {
-        console.error(e)
-      }
-    }
-    return null
+    return localStorage.getItem('accessToken')
+      ? JSON.parse(localStorage.getItem('accessToken') as string)
+      : null
   }
   // if there is a token in local storage, return it and decode it otherwise return null
   const getDecodedAccessToken = (): JwtPayload | null => {
     const accessToken: string | null = getAccessToken()
-    if (accessToken) {
-      return jwt_decode(accessToken)
-    }
-    return null
+    return accessToken ? jwt_decode(accessToken) : null
   }
-  // if there is a token in local storage, return it otherwise return null
+
+  // if there is a refresh token in local storage, return it otherwise return null
   const getRefreshToken = (): string | null => {
-    try {
-      // @ts-ignore
-      return JSON.parse(localStorage.getItem('refreshToken'))
-    } catch (e) {
-      console.error(e)
-    }
-    return null
+    return localStorage.getItem('refreshToken')
+      ? JSON.parse(localStorage.getItem('refreshToken') as string)
+      : null
   }
 
   /**
    * Fetch with auth header and refresh token if needed
-   * @param url
-   * @param options
-   * @param retry used to prevent infinite loop, only the first call should be true
    */
-  const authFetch = async (url: string, options: RequestInit = {}, retry: boolean = true): Promise<any> => {
+  const authFetch = async (
+    url: string,
+    options: RequestInit = {},
+    retry: boolean = true,
+  ): Promise<any> => {
     //take the access token from local storage with the getAccessToken function
-    // @ts-ignore
-    const accessToken: string = getAccessToken()
+    const accessToken: string | null = getAccessToken()
     //if there is no access token, throw an error
     if (!accessToken) {
       throw new Error('Nessun token di accesso')
     }
-    //create the headers object with the content type and the authorization header with the access token
-    const headers = {
+
+    const headers: { Authorization: string; 'Content-Type': string } = {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     }
+
     //fetch the url with the options and the headers
-    const res = await fetch(url, { ...options, headers })
+    const res: Response = await fetch(url, { ...options, headers })
 
     //if the response status is 401 (unauthorized) and retry is true, try to refresh the token
     // if retry is false and the response in not ok, throw an error
@@ -73,59 +69,97 @@ export const AuthContextProvider = ({ children }: { children: React.ReactNode })
       return authFetch(url, options, false)
     } else if (!res.ok) {
       //if the response is not ok, throw an error
-      throw new Error(`Errore durante la richiesta: ${res.status} - ${res.statusText}`)
+      throw new Error(
+        `Errore durante la richiesta: ${res.status} - ${res.statusText}`,
+      )
     }
-    return res
+    return res.json()
   }
   // get the user data from the server and return it
-  const getUser = async (id: number): Promise<{ name: string; email: string; avatar: string }> => {
-    const data: User = await authFetch(`${SERVER_URL}/users/${id}`, {
+  const getUser = async (id: number): Promise<UserInfo> => {
+    const res: UserInfo = await authFetch(`${SERVER_URL}/users/${id}`, {
       method: 'GET',
     })
-    return { name: data.name, email: data.email, avatar: data.avatar }
+    return { name: res.name, email: res.email, avatar: res?.avatar }
   }
 
-  // state to store the user data
-  const [user, setUser] = useState(() => {
-    // check if there is a token in local storage and decode it
-    const accessToken: JwtPayload | null = getDecodedAccessToken()
-    // if there is a token, return the user data, otherwise return null
-    return accessToken
-      ? { id: accessToken.sub, role: accessToken.role, exp: accessToken.exp, ...getUser(accessToken.sub) }
-      : null
-  })
+  useEffect((): void => {
+    const fetchUser = async () => {
+      // check if there is a token in local storage and decode it
+      const accessToken: JwtPayload | null = getDecodedAccessToken()
+      if (accessToken) {
+        const userInfo: UserInfo = await getUser(accessToken.sub)
+        setUser({
+          id: accessToken.sub,
+          role: accessToken.role,
+          exp: accessToken.exp,
+          ...userInfo,
+        })
+      }
+    }
+    fetchUser().catch((err): void => {
+      console.log(err)
+    })
+  }, [])
 
   // function to save the tokens in local storage
-  const setTokens = (tokens: Tokens) => {
+  const setTokens = async (tokens: Tokens): Promise<User> => {
     localStorage.setItem('accessToken', JSON.stringify(tokens.accessToken))
     localStorage.setItem('refreshToken', JSON.stringify(tokens.refreshToken))
-    // if there is no user, decode the access token and set the user data
-    if (user === null) {
-      const accessToken: JwtPayload = jwt_decode(tokens.accessToken)
-      setUser({ id: accessToken.sub, role: accessToken.role, exp: accessToken.exp, ...getUser(accessToken.sub) })
+
+    const accessToken: JwtPayload = jwt_decode(tokens.accessToken)
+
+    const userInfo: UserInfo = await getUser(accessToken.sub)
+    const newUser: User = {
+      id: accessToken.sub,
+      role: accessToken.role,
+      exp: accessToken.exp,
+      ...userInfo,
     }
+    setUser(newUser)
+    return newUser
   }
   // function to refresh the token when it expires
-  async function refresh() {
+  async function refresh(): Promise<void> {
     //fetch the refresh token endpoint with the refresh token in the authorization header
+    const refreshToken: string | null = getRefreshToken()
+    if (!refreshToken) {
+      logout()
+      throw new Error('Nessun token di refresh')
+    }
     const apiResponse: Response = await fetch(`${SERVER_URL}/auth/refresh`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${getRefreshToken()}`,
+        Authorization: `Bearer ${refreshToken}`,
       },
     })
     //if the response is not ok, throw an error
     if (!apiResponse.ok) {
-      throw new Error(`Errore durante il refresh token: ${apiResponse.status} - ${apiResponse.statusText}`)
+      logout()
+      throw new Error(
+        `Errore durante il refresh token: ${apiResponse.status} - ${apiResponse.statusText}`,
+      )
     }
+
     //if the response is ok, take the tokens from the response
     const tokens: Tokens = await apiResponse.json()
     //save the tokens in local storage
-    setTokens(tokens)
+    await setTokens(tokens)
   }
-  // @ts-ignore
-  return <AuthContext.Provider value={{ user, setTokens, refresh, authFetch }}>{children}</AuthContext.Provider>
+
+  const logout = (): void => {
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
+    setUser(null)
+  }
+  return (
+    <AuthContext.Provider
+      value={{ user, setTokens, refresh, authFetch, logout }}
+    >
+      {children}
+    </AuthContext.Provider>
+  )
 }
 
 export default AuthContext

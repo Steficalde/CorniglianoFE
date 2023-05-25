@@ -1,6 +1,6 @@
+import arrow from "../../assets/images/down-arrow.png";
+import warrow from "../../assets/images/w-down-arrow.png";
 
-import arrow from '../../assets/images/down-arrow.png'
-import warrow from '../../assets/images/w-down-arrow.png'
 export default function ArrowLink({ dark = false }) {
   const src_img = dark ? arrow : warrow
   const white = dark ? null : 'text-white'

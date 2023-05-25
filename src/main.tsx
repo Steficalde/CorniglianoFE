@@ -7,9 +7,11 @@ import Home from './pages/Home'
 import Login from './pages/Login'
 import Shops from './pages/Shops'
 import { AuthContextProvider } from './components/auth/AuthContext'
-import AdminShops from "./pages/admin/AdminShops";
-import AdminAwards from "./pages/admin/AdminAwards";
-import Admin from "./pages/admin/Admin";
+import AdminShops from './pages/admin/AdminShops'
+import AdminAwards from './pages/admin/AdminAwards'
+import Admin from './pages/admin/Admin'
+import AdminSettings from './pages/admin/AdminSettings'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,16 +28,18 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <Admin />,
-    children: [
-      {
-        path: '/admin/shops',
-        element: <AdminShops />,
-      },
-      {
-        path: '/admin/awards',
-        element: <AdminAwards />,
-      },
-    ],
+  },
+  {
+    path: '/admin/shops',
+    element: <AdminShops />,
+  },
+  {
+    path: '/admin/awards',
+    element: <AdminAwards />,
+  },
+  {
+    path: '/admin/settings',
+    element: <AdminSettings />,
   },
 ])
 
