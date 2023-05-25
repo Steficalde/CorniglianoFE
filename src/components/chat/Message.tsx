@@ -1,5 +1,6 @@
 
 export default function Message({children, issuer = true }) {
+    
   const messageStyler = issuer
     ? {
         background: '#b3e899',
