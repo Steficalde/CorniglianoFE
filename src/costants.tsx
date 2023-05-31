@@ -1,11 +1,14 @@
 //same as tailwind breakpoint
-import award from "./assets/images/trophy.png";
-import hug from "./assets/images/hugstore-logo.png";
-import download from "./assets/images/download.png";
-import store from "./assets/images/store.png";
-import app from "./assets/images/app.png";
-import qr from "./assets/images/qr.png";
-import completed from "./assets/images/complete.png";
+
+import award from './assets/images/trophy.png'
+import hug from './assets/images/hugstore-logo.png'
+import download from './assets/images/download.png'
+import store from './assets/images/store.png'
+import app from './assets/images/app.png'
+import qr from './assets/images/qr.png'
+import completed from './assets/images/complete.png'
+import Coin from "./components/canvas/Coin";
+
 
 export enum MIN_WIDTHS {
   SM = 640,
@@ -85,7 +88,10 @@ export const steps = [
     icon: completed,
     iconBg: '#2b49bd',
     date: 'Jan 2022 - Jan 2023',
-    points: ['hai ricevuto i tuoi punti!'],
+    points:[(<div className="flex gap-5 items-center">
+      <p>hai ricevuto i tuoi punti!</p>
+      <div className="w-[100px] h-[100px]"><Coin></Coin></div>
+    </div>)],
   },
 ]
 export const handleScrollClick = (id: string) => {
