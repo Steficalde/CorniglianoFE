@@ -2,9 +2,6 @@ import React, { createContext, useEffect, useState } from 'react'
 import jwt_decode from 'jwt-decode'
 import { SERVER_URL } from '../../costants'
 import { Auth, JwtPayload, Tokens, User } from '../../types/auth'
-
-type UserInfo = Pick<User, 'name' | 'email' | 'avatar'>
-
 const AuthContext: React.Context<Auth | null> = createContext<Auth | null>(null)
 
 export const AuthContextProvider = ({
@@ -14,7 +11,6 @@ export const AuthContextProvider = ({
 }) => {
   // state to store the user data
   const [user, setUser] = useState<User | null>(null)
-
   // utility functions
   // if there is a token in local storage, return it otherwise return null
   const getAccessToken = (): string | null => {
@@ -41,7 +37,7 @@ export const AuthContextProvider = ({
   const authFetch = async (
     url: string,
     options: RequestInit = {},
-    retry: boolean = true,
+    retry = true,
   ): Promise<any> => {
     //take the access token from local storage with the getAccessToken function
     const accessToken: string | null = getAccessToken()
@@ -67,34 +63,26 @@ export const AuthContextProvider = ({
       //with retry set to false in order to prevent infinite loop
       //function now has the new access token
       return authFetch(url, options, false)
-    } else if (!res.ok) {
-      //if the response is not ok, throw an error
-      throw new Error(
-        `Errore durante la richiesta: ${res.status} - ${res.statusText}`,
-      )
     }
-    return res.json()
+    return res
   }
   // get the user data from the server and return it
-  const getUser = async (id: number): Promise<UserInfo> => {
-    const res: UserInfo = await authFetch(`${SERVER_URL}/users/${id}`, {
+  const getUser = async (id: number): Promise<User> => {
+    const res = await authFetch(`${SERVER_URL}/users/${id}`, {
       method: 'GET',
     })
-    return { name: res.name, email: res.email, avatar: res?.avatar }
+    return res.json()
   }
 
-  useEffect((): void => {
+  useEffect(() => {
     const fetchUser = async () => {
+      //check if the token is in the query param
       // check if there is a token in local storage and decode it
       const accessToken: JwtPayload | null = getDecodedAccessToken()
+
       if (accessToken) {
-        const userInfo: UserInfo = await getUser(accessToken.sub)
-        setUser({
-          id: accessToken.sub,
-          role: accessToken.role,
-          exp: accessToken.exp,
-          ...userInfo,
-        })
+        const receivedUser: User = await getUser(accessToken.sub)
+        setUser(receivedUser)
       }
     }
     fetchUser().catch((err): void => {
@@ -109,15 +97,10 @@ export const AuthContextProvider = ({
 
     const accessToken: JwtPayload = jwt_decode(tokens.accessToken)
 
-    const userInfo: UserInfo = await getUser(accessToken.sub)
-    const newUser: User = {
-      id: accessToken.sub,
-      role: accessToken.role,
-      exp: accessToken.exp,
-      ...userInfo,
-    }
-    setUser(newUser)
-    return newUser
+    const receivedUser: User = await getUser(accessToken.sub)
+
+    setUser(receivedUser)
+    return receivedUser
   }
   // function to refresh the token when it expires
   async function refresh(): Promise<void> {
@@ -153,6 +136,9 @@ export const AuthContextProvider = ({
     localStorage.removeItem('refreshToken')
     setUser(null)
   }
+
+
+
   return (
     <AuthContext.Provider
       value={{ user, setTokens, refresh, authFetch, logout }}

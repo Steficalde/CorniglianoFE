@@ -133,7 +133,7 @@ export const DESCRIPTION = 'Hugstore is a platform for buying and selling hugs.'
 export const APP_URL = 'https://google.com'
 export const SERVER_URL = 'https://hugstore.it/api' //api
 
-export const SERVER_URK = ''
+
 // In the Menu tere is a function thatreplace underscore with space
 export enum MENU {
   Shops = '/shops',

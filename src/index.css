@@ -57,7 +57,7 @@ html {
 }
 @font-face {
   font-family: 'Poppins';
-  src: url("../../../Bitrock/BitFE/src/assets/fonts/Poppins-Regular.woff2");
+  src: url("./assets/fonts/Poppins-Regular.woff2");
 }
 *{
   font-family: 'Poppins', serif;
