@@ -4,10 +4,8 @@ import { SERVER_URL } from '../costants'
 import { Auth, Tokens, User } from '../types/auth'
 import AuthContext from '../components/auth/AuthContext'
 import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { useRedirectAdmin } from '../hooks/useRedirectAdmin'
 
 export default function Login(): JSX.Element {
-  useRedirectAdmin()
   const emailRef: React.RefObject<HTMLInputElement> =
     useRef<HTMLInputElement>(null)
   const passwordRef: React.RefObject<HTMLInputElement> =

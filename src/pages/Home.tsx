@@ -41,7 +41,6 @@ export default function Home() {
         {/*<Features></Features>*/}
       <TimeLine experiences={motivations} title="perché scegliere questa app?" idTl={'j-3'}></TimeLine>
       <Ai></Ai>
-      <Footer></Footer>
     </GuestLayout>
   )
 }

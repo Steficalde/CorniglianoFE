@@ -11,6 +11,8 @@ import AdminShops from './pages/admin/AdminShops'
 import AdminAwards from './pages/admin/AdminAwards'
 import Admin from './pages/admin/Admin'
 import AdminSettings from './pages/admin/AdminSettings'
+import AwardPage from "./pages/admin/Award/AwardPage";
+import Privacy from "./pages/Privacy";
 
 const router = createBrowserRouter([
   {
@@ -37,9 +39,17 @@ const router = createBrowserRouter([
     path: '/admin/awards',
     element: <AdminAwards />,
   },
+    {
+    path: '/admin/awards/:id',
+    element: <AwardPage />,
+  },
   {
     path: '/admin/settings',
     element: <AdminSettings />,
+  },
+    {
+    path: '/privacy',
+    element: <Privacy />,
   },
 ])
 
