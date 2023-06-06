@@ -10,7 +10,7 @@ export const About = () => {
           }}
         >
           <li>
-            è un applicazione sviluppata dalle scuole <b className="text-my-blue">Alessandro Volta</b> di Cornigliano e{' '}
+            È un'applicazione sviluppata dalle scuole <b className="text-my-blue">Alessandro Volta</b> di Cornigliano e{' '}
             <b className="text-my-blue">Italo Calvino</b> di Sestri Ponente
           </li>
           <li>

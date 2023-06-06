@@ -13,6 +13,7 @@ import Admin from './pages/admin/Admin'
 import AdminSettings from './pages/admin/AdminSettings'
 import AwardPage from "./pages/admin/Award/AwardPage";
 import Privacy from "./pages/Privacy";
+import Contatti from "./pages/Contatti";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <Login />,
+  },
+    {
+    path: '/contatti',
+    element: <Contatti />,
   },
   {
     path: '/shops',

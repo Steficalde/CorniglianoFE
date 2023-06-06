@@ -4,7 +4,7 @@ import MobileMenu from "./MobileMenu";
 import logo from "../../assets/images/hugstore-logo.png";
 import apple from "../../assets/images/app-store.png";
 import google from "../../assets/images/google-play.png";
-import { APP_URL, MENU } from "../../costants";
+import { APPLE_APP_URL, GOOGLE_APP_URL, MENU } from "../../costants";
 import TextIconButton from "../button/TextIconButton";
 import { Link } from "react-router-dom";
 
@@ -33,10 +33,10 @@ export default function Menu() {
           </div>
         </div>
         <div className="flex gap-10">
-          <a href={APP_URL} target="_blank">
+          <a href={APPLE_APP_URL} target="_blank">
             <TextIconButton text="Apple Store" icon={apple} />
           </a>
-          <a href={APP_URL} target="_blank">
+          <a href={GOOGLE_APP_URL} target="_blank">
             <TextIconButton text="Google Play" icon={google}></TextIconButton>
           </a>
         </div>

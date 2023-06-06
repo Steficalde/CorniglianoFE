@@ -130,12 +130,14 @@ export const motivs = [
 export const TITLE = 'Hugstore'
 export const DESCRIPTION = 'Hugstore is a platform for buying and selling hugs.'
 
-export const APP_URL = 'https://google.com'
+export const APPLE_APP_URL = 'https://apps.apple.com/it/app/hugstore/id6448843909'
+export const GOOGLE_APP_URL = 'https://play.google.com/store/apps/details?id=it.hugstore.hugstore&pli=1'
 export const SERVER_URL = 'https://hugstore.it/api' //api
 
 
 // In the Menu tere is a function thatreplace underscore with space
 export enum MENU {
+  Home = '/',
   Shops = '/shops',
   Contatti = '/contatti',
 
