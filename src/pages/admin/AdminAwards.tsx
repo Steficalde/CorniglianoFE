@@ -5,9 +5,7 @@ import AuthContext from '../../components/auth/AuthContext'
 import { SERVER_URL } from '../../costants'
 import Table from './Table'
 import { useNavigate } from 'react-router-dom'
-import { Award } from "./Award/award.type";
-
-
+import { Award } from './Award/award.type'
 
 export default function AdminAwards(): JSX.Element {
   const { authFetch } = useContext(AuthContext) as Auth
@@ -25,29 +23,16 @@ export default function AdminAwards(): JSX.Element {
     fetchAwards().catch(console.error)
   }, [])
 
-
-  const handleNewAward = async () => {
-    const response = await authFetch(`${SERVER_URL}/awards`, {
-      method: 'POST',
-      body: JSON.stringify({
-        title: 'Nuovo premio',
-        description: 'Descrizione',
-        cost: 0,
-        quantity: 0,
-      }),
-    })
-    const data = await response.json()
-    navigate(`/admin/awards/${data.id}`)
-  }
-
-
   return (
     <AdminLayout>
       <h1>Premi</h1>
-      <div className='mt-8 mb-8'>
-        <button className='primary-button' onClick={() => {
-          handleNewAward().catch(console.error)
-        }}>
+      <div className="mt-8 mb-8">
+        <button
+          className="primary-button"
+          onClick={() => {
+            return navigate('/admin/awards/new')
+          }}
+        >
           Nuovo
         </button>
       </div>

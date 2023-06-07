@@ -143,7 +143,7 @@ export enum MENU {
 
 }
 export enum ADMIN_MENU {
-  Dashboard = '/admin',
+  Utenti = '/admin',
   Negozi = '/admin/shops',
   Premi = '/admin/awards',
   Impostazioni = '/admin/settings',

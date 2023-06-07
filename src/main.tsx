@@ -14,6 +14,9 @@ import AdminSettings from './pages/admin/AdminSettings'
 import AwardPage from "./pages/admin/Award/AwardPage";
 import Privacy from "./pages/Privacy";
 import Contatti from "./pages/Contatti";
+import AdminAwardsCreate from "./pages/admin/Award/AdminAwardCreate";
+import AdminShopCreate from "./pages/admin/Shop/AdminShopCreate";
+import AdminShop from "./pages/admin/Shop/AdminShop";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +43,14 @@ const router = createBrowserRouter([
     path: '/admin/shops',
     element: <AdminShops />,
   },
+    {
+    path: '/admin/shops/:id',
+    element: <AdminShop />,
+  },
+    {
+    path: '/admin/shops/new',
+    element: <AdminShopCreate />,
+  },
   {
     path: '/admin/awards',
     element: <AdminAwards />,
@@ -47,6 +58,10 @@ const router = createBrowserRouter([
     {
     path: '/admin/awards/:id',
     element: <AwardPage />,
+  },
+      {
+    path: '/admin/awards/new',
+    element: <AdminAwardsCreate />,
   },
   {
     path: '/admin/settings',

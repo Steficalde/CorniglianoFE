@@ -80,9 +80,11 @@ export default function Login(): JSX.Element {
                 ref={passwordRef}
               />
             </div>
-            <button type="submit" className="">
-              Login
-            </button>
+            <div className='flex justify-center'>
+              <button type="submit" className="primary-button">
+                Login
+              </button>
+            </div>
           </form>
         </div>
       </div>

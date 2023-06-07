@@ -7,36 +7,32 @@ import { Auth } from '../../../types/auth'
 import AuthContext from '../../../components/auth/AuthContext'
 import LabelTextInput from '../../../components/input/LabelTextInput'
 
-
-
-const AwardPage = () => {
+const AdminAwardCreate = () => {
   const { id } = useParams<{ id: string }>()
   const { authFetch } = useContext(AuthContext) as Auth
-  const [award, setAward] = useState<Award | null>(null)
+  const [award, setAward] = useState<Partial<Award> | null>({
+    title: '',
+    description: '',
+    cost: 0,
+    quantity: 0,
+    image: '',
+  })
   const [status, setStatus] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(false)
-
-  useEffect(() => {
-    const fetchAward = async () => {
-      const response = await authFetch(`${SERVER_URL}/awards/${id}`)
-      const data = await response.json()
-      setAward(data)
-    }
-    fetchAward().catch(console.error)
-  }, [])
 
   const handleAwardChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
     setAward({ ...(award as Award), [name]: value })
   }
   const submit = async () => {
-    const response = await authFetch(`${SERVER_URL}/awards/${id}`, {
-      method: 'PATCH',
+    const response = await authFetch(`${SERVER_URL}/awards`, {
+      method: 'POST',
       body: JSON.stringify({
         title: award?.title,
         description: award?.description,
         cost: +award?.cost,
         quantity: +award?.quantity,
+        image: award?.image,
       }),
     })
     if (!response.ok) {
@@ -45,7 +41,7 @@ const AwardPage = () => {
       setStatus(data.message[0])
     } else {
       setIsError(false)
-      setStatus('Modifica avvenuta con successo!')
+      setStatus('Creazione avvenuta con successo!')
       setTimeout(() => {
         setStatus('')
       }, 3000)
@@ -53,7 +49,7 @@ const AwardPage = () => {
   }
   return (
     <AdminLayout>
-      <h1>Premio {award?.id}</h1>
+      <h1>Nuovo premio</h1>
       <section className={'max-w-[600px] flex flex-col gap-4 mt-10'}>
         <LabelTextInput
           type={'text'}
@@ -84,11 +80,11 @@ const AwardPage = () => {
         </div>
         <div className="flex justify-end">
           <button onClick={submit} className="primary-button">
-            Salva
+            Crea
           </button>
         </div>
       </section>
     </AdminLayout>
   )
 }
-export default AwardPage
+export default AdminAwardCreate
