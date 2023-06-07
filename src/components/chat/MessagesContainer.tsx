@@ -38,7 +38,7 @@ export default function MessagesContainer() {
       setTimeout(() => {
         setMessages((messages) => [...messages, data])
         setIsLoading(false)
-      }, 1000)
+      }, 20)
 
       // @ts-ignore
       input.value = ''
