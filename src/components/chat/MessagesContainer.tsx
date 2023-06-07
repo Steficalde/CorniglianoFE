@@ -18,6 +18,7 @@ export default function MessagesContainer() {
     const message = input.value
     let data: string
     try {
+            setMessages((messages) => [...messages, message])
       let form = new FormData()
       form.append('message', message)
       const res = await fetch(`https://hugstore.it/chat`, {
@@ -34,11 +35,11 @@ export default function MessagesContainer() {
         'problema di connessione, riprovare',
       ])
     } finally {
-      setMessages((messages) => [...messages, message])
+
       setTimeout(() => {
         setMessages((messages) => [...messages, data])
         setIsLoading(false)
-      }, 20)
+      }, 500)
 
       // @ts-ignore
       input.value = ''
