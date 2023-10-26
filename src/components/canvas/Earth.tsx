@@ -7,7 +7,9 @@ import CanvasLoader from "../Loader";
 const Earth = () => {
   const earth = useGLTF('/models/planet/scene.gltf')
 
-  return <primitive object={earth.scene} scale={2} position-y={0} rotation-y={0} />
+  return (
+    <primitive object={earth.scene} scale={2} position-y={0} rotation-y={0} />
+  )
 }
 
 const EarthCanvas = () => {
@@ -25,7 +27,12 @@ const EarthCanvas = () => {
       }}
     >
       <Suspense fallback={<CanvasLoader />}>
-        <OrbitControls autoRotate enableZoom={false} maxPolarAngle={Math.PI / 2} minPolarAngle={Math.PI / 2} />
+        <OrbitControls
+          autoRotate
+          enableZoom={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 2}
+        />
         <Earth />
 
         <Preload all />

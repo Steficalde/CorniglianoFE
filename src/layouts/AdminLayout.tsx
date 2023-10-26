@@ -1,13 +1,12 @@
-import RequireAdmin, { requireAdmin } from '../hooks/RequireAdmin'
-import AdminMenu from '../components/menu/AdminMenu'
-import React, { useEffect } from 'react'
+import RequireAdmin from "../hooks/RequireAdmin";
+import AdminMenu from "../components/menu/AdminMenu";
+import React from "react";
 
 export default function AdminLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-
   return (
     <RequireAdmin>
       <>

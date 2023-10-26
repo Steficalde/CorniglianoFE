@@ -1,4 +1,4 @@
-const Table = ({ children }) => {
+const Table = ({ children }: { children: JSX.Element }) => {
   return (
     <div className="flex flex-col overflow-x-auto">
       <div className="sm:-mx-6 lg:-mx-8">
@@ -11,18 +11,20 @@ const Table = ({ children }) => {
     </div>
   )
 }
-const TableHead = ({ children }) => (
+const TableHead = ({ children }: { children: JSX.Element }) => (
   <thead className="border-b font-medium dark:border-neutral-500">
     {children}
   </thead>
 )
 
-const TableBody = ({ children }) => <tbody>{children}</tbody>
+const TableBody = ({ children }: { children: JSX.Element }) => (
+  <tbody>{children}</tbody>
+)
 
-const TableData = ({ children }) => (
+const TableData = ({ children }: { children: JSX.Element | string | number }) => (
   <td className="whitespace-nowrap px-6 py-4">{children}</td>
 )
-const TableHeader = ({ children }) => (
+const TableHeader = ({ children }: { children: JSX.Element | string | number }) => (
   <th scope="col" className="px-6 py-4">
     {children}
   </th>

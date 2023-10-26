@@ -1,6 +1,4 @@
-
-
-export default function TextIconButton({ text='', icon='' }) {
+export default function TextIconButton({ text = '', icon = '' }) {
   return (
     <div className=" w-fit p-2 flex justify-between bg-transparent rounded-xl gap-2 duration-200 hover:scale-[105%] >">
       <div>

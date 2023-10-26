@@ -10,14 +10,18 @@ export const About = () => {
           }}
         >
           <li>
-            È un'applicazione sviluppata dalle scuole <b className="text-my-blue">Alessandro Volta</b> di Cornigliano e{' '}
+            È un'applicazione sviluppata dalle scuole{' '}
+            <b className="text-my-blue">Alessandro Volta</b> di Cornigliano e{' '}
             <b className="text-my-blue">Italo Calvino</b> di Sestri Ponente
           </li>
           <li>
-            Lo scopo dell'iniziativa è di <b className="text-my-blue">riattivare</b> l'economia locale di Cornigliano
+            Lo scopo dell'iniziativa è di{' '}
+            <b className="text-my-blue">riattivare</b> l'economia locale di
+            Cornigliano
           </li>
           <li>
-            Attraverso l'applicazione, facendo acquisti nei negozi di Cornigliano, potrai ricevere{' '}
+            Attraverso l'applicazione, facendo acquisti nei negozi di
+            Cornigliano, potrai ricevere{' '}
             <b className="text-my-blue">gratuitamente</b> dei premi
           </li>
         </div>

@@ -28,7 +28,12 @@ export default function TypingText({ text = [''] }) {
 
   return (
     <div className="text-container w-fit overflow-hidden py-10">
-      <h1 id="text-typed" ref={ref} className="relative  font-bold  text-center " style={{}} />
+      <h1
+        id="text-typed"
+        ref={ref}
+        className="relative  font-bold  text-center "
+        style={{}}
+      />
     </div>
   )
 }

@@ -10,7 +10,13 @@ const Coin = () => {
     <mesh>
       <directionalLight intensity={3} position={[-6, 10, 0]} />
       <directionalLight intensity={3} position={[6, -10, 0]} />
-      <primitive object={earth.scene} scale={2.5} position-y={0} rotation-y={0} rotation-z={75} />
+      <primitive
+        object={earth.scene}
+        scale={2.5}
+        position-y={0}
+        rotation-y={0}
+        rotation-z={75}
+      />
     </mesh>
   )
 }

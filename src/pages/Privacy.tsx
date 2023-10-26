@@ -1,11 +1,11 @@
-import GuestLayout from '../layouts/GuestLayout'
+import GuestLayout from "../layouts/GuestLayout";
 
 const Privacy = () => {
   return (
     <GuestLayout>
-      <section className='container-xl mt-32'>
+      <section className="container-xl mt-32">
         <h1>Privacy</h1>
-        <p >
+        <p>
           Termini e condizioni Le diamo il benvenuto su Hugstore! I termini e le
           condizioni seguenti indicano regole e normative per l'utilizzo del
           sito di Hugstore, all'indirizzo https://hugstore.it. Accedendo a

@@ -1,9 +1,9 @@
-import TextInput from '../components/input/TextInput'
-import React, { useContext, useRef, useState } from 'react'
-import { SERVER_URL } from '../costants'
-import { Auth, Tokens, User } from '../types/auth'
-import AuthContext from '../components/auth/AuthContext'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
+import TextInput from "../components/input/TextInput";
+import React, { useContext, useRef, useState } from "react";
+import { SERVER_URL } from "../costants";
+import { Auth, Tokens, User } from "../types/auth";
+import AuthContext from "../components/auth/AuthContext";
+import { NavigateFunction, useNavigate } from "react-router-dom";
 
 export default function Login(): JSX.Element {
   const emailRef: React.RefObject<HTMLInputElement> =
@@ -39,7 +39,7 @@ export default function Login(): JSX.Element {
           logout()
           return navigate('/')
         }
-        return navigate('/admin')
+        return navigate('/admin/users')
       } else if (login.status === 403) {
         setError('Email o password errati')
       } else {
@@ -80,7 +80,7 @@ export default function Login(): JSX.Element {
                 ref={passwordRef}
               />
             </div>
-            <div className='flex justify-center'>
+            <div className="flex justify-center">
               <button type="submit" className="primary-button">
                 Login
               </button>

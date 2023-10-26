@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from "react";
 
-import AuthContext from '../components/auth/AuthContext'
-import { NavigateFunction, useNavigate } from 'react-router-dom'
-import { Auth } from '../types/auth'
-import Admin from "../pages/admin/Admin";
+import AuthContext from "../components/auth/AuthContext";
+import { NavigateFunction, useNavigate } from "react-router-dom";
+import { Auth } from "../types/auth";
+import Admin from "../pages/admin/AdminUsers";
 
 /**
  * Redirects the user to the admin page if they are logged in.

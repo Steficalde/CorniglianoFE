@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import send from '../../assets/images/send.png'
-import Message from './Message'
-import { ThreeDots } from 'react-loader-spinner'
+import React, { useEffect, useState } from "react";
+import send from "../../assets/images/send.png";
+import Message from "./Message";
+import { ThreeDots } from "react-loader-spinner";
 
 export default function MessagesContainer() {
   const input = window.document.querySelector('#get_message')
@@ -18,7 +18,7 @@ export default function MessagesContainer() {
     const message = input.value
     let data: string
     try {
-            setMessages((messages) => [...messages, message])
+      setMessages((messages) => [...messages, message])
       let form = new FormData()
       form.append('message', message)
       const res = await fetch(`https://hugstore.it/chat`, {
@@ -35,7 +35,6 @@ export default function MessagesContainer() {
         'problema di connessione, riprovare',
       ])
     } finally {
-
       setTimeout(() => {
         setMessages((messages) => [...messages, data])
         setIsLoading(false)
@@ -91,9 +90,7 @@ export default function MessagesContainer() {
         id="container-sender"
         className=" h-[60px] w-full flex justify-center items-center mb-2"
       >
-        <div
-          className="flex gap-2  w-full h-[40px] items-center justify-center"
-        >
+        <div className="flex gap-2  w-full h-[40px] items-center justify-center">
           <textarea
             id="get_message"
             className="rounded-full pt-2 w-full ml-2 resize-none outline-none h-full  bg-white text-black pl-4"
@@ -115,7 +112,7 @@ export default function MessagesContainer() {
             onClick={(e) => {
               e.preventDefault()
               if (input.value.length === 0) return
-              chat();
+              chat()
             }}
             type="submit"
             value="enter"

@@ -7,7 +7,9 @@ export default function Features() {
   return (
     <div className="flex flex-col justify-center items-center px-3">
       <div className="w-full flex justify-center" id="j-2">
-        <TypingText text={['rafforzare', 'riuniamo', 'riattiviamo']}></TypingText>
+        <TypingText
+          text={['rafforzare', 'riuniamo', 'riattiviamo']}
+        ></TypingText>
       </div>
       <div className="w-[800px] flex gap-12 justify-center max-xl:flex-col max-xl:w-[100%]">
         <div className="w-3/5 h-[650px] rounded-3xl bg-white flex justify-center  max-xl:w-[100%] max-xl:h-[600px]">

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import AdminLayout from '../../../layouts/AdminLayout'
-import { Shop } from '../../../types/Shop'
-import React, { useContext, useEffect, useState } from 'react'
+import { ShopType } from './shop.type'
+import React, { useContext, useState } from 'react'
 import { SERVER_URL } from '../../../costants'
 import { Auth } from '../../../types/auth'
 import AuthContext from '../../../components/auth/AuthContext'
@@ -10,13 +10,12 @@ import LabelTextInput from '../../../components/input/LabelTextInput'
 const AdminShopCreate = () => {
   const { id } = useParams<{ id: string }>()
   const { authFetch } = useContext(AuthContext) as Auth
-  const [Shop, setShop] = useState<Partial<Shop> | null>({
-    name: '',
+  const [Shop, setShop] = useState<Partial<ShopType> | null>({
     description: '',
     address: '',
-    googleMaps: '',
     user: {
       name: '',
+      avatar: '',
       email: '',
       password: '',
     },
@@ -26,11 +25,11 @@ const AdminShopCreate = () => {
 
   const handleShopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    setShop({ ...(Shop as Shop), [name]: value })
-    if (name === 'name' || name === 'email' || name === 'password') {
+    setShop({ ...(Shop as ShopType), [name]: value })
+    if (name === 'name' || name === 'email' || name === 'password' || name === 'avatar') {
       setShop({
-        ...(Shop as Shop),
-        user: { ...(Shop as Shop).user, [name]: value },
+        ...(Shop as ShopType),
+        user: { ...(Shop as ShopType).user, [name]: value },
       })
     }
   }
@@ -38,27 +37,26 @@ const AdminShopCreate = () => {
     const responseUser = await authFetch(`${SERVER_URL}/users/${id}`, {
       method: 'POST',
       body: JSON.stringify({
-        name: Shop?.user.name,
-        email: Shop?.user.email,
-        password: Shop?.user.password,
-        confirmPassword: Shop?.user.password,
+        name: Shop?.user?.name,
+        email: Shop?.user?.email,
+        avatar: Shop?.user?.avatar,
+        password: Shop?.user?.password,
+        confirmPassword: Shop?.user?.password,
       }),
     })
-    const temp = await responseUser.json()
+    const newUser = await responseUser.json()
     const response = await authFetch(`${SERVER_URL}/shops/${id}`, {
       method: 'POST',
       body: JSON.stringify({
-        id: temp.id,
+        id: newUser.id,
         description: Shop?.description,
-        googleMaps: Shop?.googleMaps,
         address: Shop?.address,
       }),
     })
     if (!responseUser.ok) {
       const data = await responseUser.json()
       setIsError(true)
-      setStatus(data.message[0])
-
+      setStatus(data.message)
     } else {
       setIsError(false)
       setStatus('Creazione avvenuta con successo!')
@@ -69,7 +67,7 @@ const AdminShopCreate = () => {
     if (!response.ok) {
       const data = await response.json()
       setIsError(true)
-      setStatus(data.message[0])
+      setStatus(data.message)
     } else {
       setIsError(false)
       setStatus('Creazione avvenuta con successo!')
@@ -86,25 +84,25 @@ const AdminShopCreate = () => {
           type={'text'}
           name={'name'}
           onChange={handleShopChange}
-          value={Shop?.user.name ?? ''}
+          value={Shop?.user?.name ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'email'}
           name={'email'}
           onChange={handleShopChange}
-          value={Shop?.user.email ?? ''}
+          value={Shop?.user?.email ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
           name={'password'}
           onChange={handleShopChange}
-          value={Shop?.user.password ?? ''}
+          value={Shop?.user?.password ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
-          name={'title'}
+          name={'avatar'}
           onChange={handleShopChange}
-          value={Shop?.title ?? ''}
+          value={Shop?.user?.avatar ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
@@ -117,12 +115,6 @@ const AdminShopCreate = () => {
           name={'address'}
           onChange={handleShopChange}
           value={Shop?.address ?? ''}
-        ></LabelTextInput>
-        <LabelTextInput
-          type={'text'}
-          name={'googleMaps'}
-          onChange={handleShopChange}
-          value={Shop?.googleMaps ?? ''}
         ></LabelTextInput>
 
         <div className={`${isError ? 'text-red-700' : ''}`}>

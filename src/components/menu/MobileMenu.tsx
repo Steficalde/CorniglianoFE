@@ -17,7 +17,9 @@ export default function MobileMenu({
         isOpen ? `` : `-translate-x-full`
       }`}
     >
-      <div className={`w-[60%] h-full pt-20 px-4 bg-white ${className}`}>{children}</div>
+      <div className={`w-[60%] h-full pt-20 px-4 bg-white ${className}`}>
+        {children}
+      </div>
       <div className="w-[40%] h-full z-30" onClick={handleMenu}></div>
     </div>
   )

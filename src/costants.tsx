@@ -1,14 +1,13 @@
 //same as tailwind breakpoint
 
-import award from './assets/images/trophy.png'
-import hug from './assets/images/hugstore-logo.png'
-import download from './assets/images/download.png'
-import store from './assets/images/store.png'
-import app from './assets/images/app.png'
-import qr from './assets/images/qr.png'
-import completed from './assets/images/complete.png'
+import award from "./assets/images/trophy.png";
+import hug from "./assets/images/hugstore-logo.png";
+import download from "./assets/images/download.png";
+import store from "./assets/images/store.png";
+import app from "./assets/images/app.png";
+import qr from "./assets/images/qr.png";
+import completed from "./assets/images/complete.png";
 import Coin from "./components/canvas/Coin";
-
 
 export enum MIN_WIDTHS {
   SM = 640,
@@ -22,7 +21,10 @@ export const motivations = [
     icon: award,
     iconBg: '#2c47b4',
     date: 'March 2020 - April 2021',
-    points: ["Utilizzando l'app puoi guadagnare punti", 'Con i punti puoi scegliere tra diversi premi'],
+    points: [
+      "Utilizzando l'app puoi guadagnare punti",
+      'Con i punti puoi scegliere tra diversi premi',
+    ],
   },
   {
     title: 'Sostieni i piccoli negozi',
@@ -41,7 +43,9 @@ export const motivations = [
     icon: hug,
     iconBg: '#2b49bd',
     date: 'Jan 2022 - Jan 2023',
-    points: ['Questo progetto è reso possibile dalle scuole della zona che credono in Cornigliano'],
+    points: [
+      'Questo progetto è reso possibile dalle scuole della zona che credono in Cornigliano',
+    ],
   },
 ]
 
@@ -60,7 +64,10 @@ export const steps = [
     icon: store,
     iconBg: '#E6DEDD',
     date: 'Jan 2021 - Feb 2022',
-    points: ["recati in un negozio aderente all'iniziativa", 'esegui un acquisto'],
+    points: [
+      "recati in un negozio aderente all'iniziativa",
+      'esegui un acquisto',
+    ],
   },
   {
     title: "apri l'applicazione",
@@ -88,10 +95,14 @@ export const steps = [
     icon: completed,
     iconBg: '#2b49bd',
     date: 'Jan 2022 - Jan 2023',
-    points:[(<div className="flex gap-5 items-center">
-      <p>hai ricevuto i tuoi punti!</p>
-      <div className="w-[100px] h-[100px]"><Coin></Coin></div>
-    </div>)],
+    points: [
+      <div className="flex gap-5 items-center">
+        <p>hai ricevuto i tuoi punti!</p>
+        <div className="w-[100px] h-[100px]">
+          <Coin></Coin>
+        </div>
+      </div>,
+    ],
   },
 ]
 export const handleScrollClick = (id: string) => {
@@ -105,7 +116,10 @@ export const motivs = [
     image: award,
     iconBg: '#2c47b4',
     date: 'March 2020 - April 2021',
-    points: ["Utilizzando l'app puoi guadagnare punti", 'Con i punti puoi scegliere tra diversi premi'],
+    points: [
+      "Utilizzando l'app puoi guadagnare punti",
+      'Con i punti puoi scegliere tra diversi premi',
+    ],
   },
   {
     title: 'Sostieni i piccoli negozi',
@@ -124,28 +138,29 @@ export const motivs = [
     image: hug,
     iconBg: '#2b49bd',
     date: 'Jan 2022 - Jan 2023',
-    points: ['Questo progetto è reso possibile dalle scuole della zona che credono in Cornigliano'],
+    points: [
+      'Questo progetto è reso possibile dalle scuole della zona che credono in Cornigliano',
+    ],
   },
 ]
 export const TITLE = 'Hugstore'
 export const DESCRIPTION = 'Hugstore is a platform for buying and selling hugs.'
 
-export const APPLE_APP_URL = 'https://apps.apple.com/it/app/hugstore/id6448843909'
-export const GOOGLE_APP_URL = 'https://play.google.com/store/apps/details?id=it.hugstore.hugstore&pli=1'
+export const APPLE_APP_URL =
+  'https://apps.apple.com/it/app/hugstore/id6448843909'
+export const GOOGLE_APP_URL =
+  'https://play.google.com/store/apps/details?id=it.hugstore.hugstore&pli=1'
 export const SERVER_URL = 'https://hugstore.it/api' //api
-
 
 // In the Menu tere is a function thatreplace underscore with space
 export enum MENU {
   Home = '/',
   Shops = '/shops',
   Contatti = '/contatti',
-
 }
 export enum ADMIN_MENU {
-  Utenti = '/admin',
+  Utenti = '/admin/users',
   Negozi = '/admin/shops',
   Premi = '/admin/awards',
   Impostazioni = '/admin/settings',
 }
-

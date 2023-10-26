@@ -3,7 +3,11 @@ import React from "react";
 export default function Section({ article, reverse = false }) {
   const reversed = reverse ? 'flex-row-reverse' : null
   return (
-    <div className={'w-full flex justify-center items-center gap-24 h-[300px] ' + reversed}>
+    <div
+      className={
+        'w-full flex justify-center items-center gap-24 h-[300px] ' + reversed
+      }
+    >
       <div>
         <img width={300} src={article.image} alt={article.title}></img>
       </div>
@@ -13,8 +17,11 @@ export default function Section({ article, reverse = false }) {
         <h2 className="font-bold text-left">{article.title}</h2>
 
         <div className="flex flex-col items-start justify-start ">
-          {article.points.map((point:string, index:number) => (
-            <li key={`experience-point-${index}`} className=" text-[14px] pl-1 tracking-wider ">
+          {article.points.map((point: string, index: number) => (
+            <li
+              key={`experience-point-${index}`}
+              className=" text-[14px] pl-1 tracking-wider "
+            >
               {point}
             </li>
           ))}

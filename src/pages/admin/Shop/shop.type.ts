@@ -1,11 +1,11 @@
-export type Shop = {
+export type ShopType = {
   id: number
   address: string
   description: string
-
-  googleMaps: string
   user: {
     name: string
+    email: string
     avatar: string
+    password?: string
   }
 }

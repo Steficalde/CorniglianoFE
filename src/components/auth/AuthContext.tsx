@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from 'react'
-import jwt_decode from 'jwt-decode'
-import { SERVER_URL } from '../../costants'
-import { Auth, JwtPayload, Tokens, User } from '../../types/auth'
+import React, { createContext, useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
+import { SERVER_URL } from "../../costants";
+import { Auth, JwtPayload, Tokens, User } from "../../types/auth";
+
 const AuthContext: React.Context<Auth | null> = createContext<Auth | null>(null)
 
 export const AuthContextProvider = ({
@@ -136,8 +137,6 @@ export const AuthContextProvider = ({
     localStorage.removeItem('refreshToken')
     setUser(null)
   }
-
-
 
   return (
     <AuthContext.Provider

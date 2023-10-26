@@ -1,6 +1,4 @@
-
-
-export type Award = {
+export type AwardType = {
   id: number
   cost: number
   quantity: number
