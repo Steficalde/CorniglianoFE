@@ -17,7 +17,6 @@ export default function AdminShops(): JSX.Element {
       const response = await authFetch(`${SERVER_URL}/shops/all`)
       const data = await response.json()
       setShops(data)
-      console.log(data)
     }
 
     fetchShops().catch(console.error)

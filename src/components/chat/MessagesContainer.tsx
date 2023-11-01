@@ -29,7 +29,7 @@ export default function MessagesContainer() {
       data = await res.text()
     } catch (e) {
       // @ts-ignore
-      console.log(e.error)
+
       setMessages((messages) => [
         ...messages,
         'problema di connessione, riprovare',

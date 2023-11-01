@@ -28,7 +28,7 @@ const AwardPage = () => {
     setAward({ ...(award as AwardType), [name]: value })
   }
   const submit = async () => {
-    console.log(award)
+
     const response = await authFetch(`${SERVER_URL}/awards/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
@@ -41,7 +41,7 @@ const AwardPage = () => {
     if (!response.ok) {
       const data = await response.json()
       setIsError(true)
-      setStatus(data.message)
+      setStatus(data.message.isArray ? data.message.join(' ') : data.message)
     } else {
       setIsError(false)
       setStatus('Modifica avvenuta con successo!')
@@ -79,7 +79,7 @@ const AwardPage = () => {
           value={award?.cost ?? 0}
         ></LabelTextInput>
         <div className={`${isError ? 'text-red-700' : ''}`}>
-          {status.slice(0, 1).toUpperCase() + status.slice(1)}
+          {status}
         </div>
         <div className="flex justify-end">
           <button onClick={submit} className="primary-button">

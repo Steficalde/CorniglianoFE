@@ -46,7 +46,7 @@ export default function Login(): JSX.Element {
         setError('Errore sconosciuto')
       }
     } catch (error) {
-      console.log(error)
+
     }
   }
 

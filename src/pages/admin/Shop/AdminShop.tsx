@@ -12,7 +12,7 @@ import Modal from '../../../components/Modal'
 const ShopPage = () => {
   const { id } = useParams<{ id: string }>()
   const { authFetch } = useContext(AuthContext) as Auth
-  const [Shop, setShop] = useState<ShopType | null>(null)
+  const [Shop, setShop] = useState<any | null>(null)
   const [status, setStatus] = useState<string>('')
   const [isError, setIsError] = useState<boolean>(false)
   const [show, setShow] = useState<boolean>(false)
@@ -25,54 +25,39 @@ const ShopPage = () => {
   useEffect(() => {
     const fetchShop = async () => {
       const response = await authFetch(`${SERVER_URL}/shops/${id}`)
-      const data = await response.json()
-      setShop(data)
+      const data: ShopType = await response.json()
+
+      setShop({
+        name: data.user.name,
+        email: data.user.email,
+        avatar: data.user.avatar,
+        description: data.description,
+        address: data.address,
+      })
     }
     fetchShop().catch(console.error)
   }, [])
 
   const handleShopChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target
-    setShop({ ...(Shop as ShopType), [name]: value })
-    if (name === 'name' || name === 'email' || name === 'avatar') {
-      setShop({
-        ...(Shop as ShopType),
-        user: { ...(Shop as ShopType).user, [name]: value },
-      })
-    }
+    setShop({ ...Shop, [name]: value })
   }
   const submit = async () => {
-    const responseUser = await authFetch(`${SERVER_URL}/users/${id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        name: Shop?.user.name,
-        avatar: Shop?.user.avatar,
-        email: Shop?.user.email,
-      }),
-    })
     const response = await authFetch(`${SERVER_URL}/shops/${id}`, {
       method: 'PATCH',
       body: JSON.stringify({
         description: Shop?.description,
         address: Shop?.address,
+        name: Shop?.name,
+        email: Shop?.email,
+        avatar: Shop?.avatar,
       }),
     })
-    if (!responseUser.ok) {
-      const data = await responseUser.json()
-      setIsError(true)
-      setStatus(data.message)
-      return
-    } else {
-      setIsError(false)
-      setStatus('Modifica avvenuta con successo!')
-      setTimeout(() => {
-        setStatus('')
-      }, 3000)
-    }
+
     if (!response.ok) {
       const data = await response.json()
       setIsError(true)
-      setStatus(data.message)
+      setStatus(data.message.isArray ? data.message.join(' ') : data.message)
     } else {
       setIsError(false)
       setStatus('Modifica avvenuta con successo!')
@@ -89,7 +74,8 @@ const ShopPage = () => {
     if (!responseUser.ok) {
       const data = await responseUser.json()
       setIsError(true)
-      setStatus(data.message)
+      setStatus(data.message.isArray ? data.message.join(' ') : data.message)
+
       return
     } else {
       return navigate('/admin/shops')
@@ -104,19 +90,19 @@ const ShopPage = () => {
           type={'text'}
           name={'name'}
           onChange={handleShopChange}
-          value={Shop?.user.name ?? ''}
+          value={Shop?.name ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
           name={'email'}
           onChange={handleShopChange}
-          value={Shop?.user.email ?? ''}
+          value={Shop?.email ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
           name={'avatar'}
           onChange={handleShopChange}
-          value={Shop?.user.avatar ?? ''}
+          value={Shop?.avatar ?? ''}
         ></LabelTextInput>
         <LabelTextInput
           type={'text'}
@@ -130,8 +116,9 @@ const ShopPage = () => {
           onChange={handleShopChange}
           value={Shop?.address ?? ''}
         ></LabelTextInput>
+
         <div className={`${isError ? 'text-red-700' : ''}`}>
-          {status.slice(0, 1).toUpperCase() + status.slice(1)}
+          {status}
         </div>
         <div className="flex justify-end">
           <button onClick={changeModal} className="warn-button">

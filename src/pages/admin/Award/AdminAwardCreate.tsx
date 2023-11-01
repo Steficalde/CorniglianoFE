@@ -38,7 +38,7 @@ const AdminAwardCreate = () => {
     if (!response.ok) {
       const data = await response.json()
       setIsError(true)
-      setStatus(data.message)
+      setStatus(data.message ? data.message : data)
     } else {
       setIsError(false)
       setStatus('Creazione avvenuta con successo!')
@@ -76,7 +76,7 @@ const AdminAwardCreate = () => {
           value={award?.cost ?? 0}
         ></LabelTextInput>
         <div className={`${isError ? 'text-red-700' : ''}`}>
-          {status.slice(0, 1).toUpperCase() + status.slice(1)}
+          {status}
         </div>
         <div className="flex justify-end">
           <button onClick={submit} className="primary-button">

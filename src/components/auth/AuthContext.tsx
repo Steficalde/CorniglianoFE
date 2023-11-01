@@ -87,7 +87,7 @@ export const AuthContextProvider = ({
       }
     }
     fetchUser().catch((err): void => {
-      console.log(err)
+
     })
   }, [])
 

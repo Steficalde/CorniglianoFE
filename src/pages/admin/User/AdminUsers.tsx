@@ -16,7 +16,6 @@ export default function AdminUsers(): JSX.Element {
     const fetchUsers = async () => {
       const response = await authFetch(`${SERVER_URL}/users`)
       const data = await response.json()
-      console.log(data)
       setUsers(data)
     }
 

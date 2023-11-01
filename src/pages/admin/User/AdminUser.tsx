@@ -93,7 +93,7 @@ const AdminUser = () => {
           value={user?.email ?? ""}
         ></LabelTextInput>
         <div className={`${isError ? "text-red-700" : ""}`}>
-          {status.slice(0, 1).toUpperCase() + status.slice(1)}
+          {status}
         </div>
         <div className="flex justify-end gap-4">
           <button onClick={changeModal} className="warn-button">
